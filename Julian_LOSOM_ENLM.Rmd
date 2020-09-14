@@ -540,7 +540,7 @@ South Florida Water Management District ([DBHYDRO](https://www.sfwmd.gov/science
 
 #### Slides
 
-* HTML Slide deck LINK &copy; Julian (2020) [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
+* HTML [Slide deck](http://swampthingecology.org/LOSOM_ENLM/Julian_LOSOM_ENLM) &copy; Julian (2020) [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
 
 * RMarkdown [Source](https://github.com/SwampThingPaul/LOSOM_ENLM)
 
