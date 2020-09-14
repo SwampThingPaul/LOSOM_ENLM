@@ -34,3 +34,13 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+
+#
+/data/
+/README.Rmd
+/DoeringModel/
+/_manuscript/
+/_presentations/
+
+/src/
