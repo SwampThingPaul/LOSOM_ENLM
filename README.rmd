@@ -1,5 +1,7 @@
-Lake Okeechobee System Operating Manual - Estuary Nutrient Loading Model
-================
+---
+title: "Lake Okeechobee System Operating Manual - Estuary Nutrient Loading Model"
+output: github_document
+---
 
 ## Contact
 
@@ -8,7 +10,7 @@ Email](mailto:pauljulianphd@gmail.com)
 
 ## Description/contents
 
-*New Repo* still under construction
+_New Repo_ still under construction
 
 <!--
   - `Reports/`: Reports/information generated through this effort.
