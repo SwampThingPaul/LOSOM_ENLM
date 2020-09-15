@@ -30,7 +30,9 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo=FALSE)
 
 layout: true
 
-<div class="my-footer"><span>DRAFT</span></div>
+<div class="my-footer">
+<span>DRAFT - 9/18/2020</span>
+</div>
 
 <!-- this adds the link footer to all slides, depends on my-footer class in css-->
 <!-- used https://arm.rbind.io/slides/xaringan.html to help build this presentation --->
@@ -54,7 +56,7 @@ class: left, middle
 
 FDEP - Office of Water Policy and Ecosystem Restoration
 
-`r format(as.Date("2020-09-14"),"%B %d, %Y")`
+`r format(as.Date("2020-09-18"),"%B %d, %Y")`
 
 <!-- this ends up being the title slide since seal = FALSE-->
 
@@ -66,13 +68,21 @@ class: left
 
 - __Goal:__ Develop a series of water quality models based on hydrodynamic indicators to be used in planning model scenario evaluation for LOSOM using RSMBN.
 
+--
+
 - __Period of Record:__ May 1980 – April 2019 (WY1981 – 2019)
   - Based on available data.
   - Years with major hurricanes were excluded. 
 
+--
+
 - __Parameters of Interest:__ Total Phosphorus and Total Nitrogen.
 
+--
+
 - __Predictor Variables:__ Discharge (S77, S78, S79, C43 Basin) converted from ft<sup>3</sup> s<sup>-1</sup> to Acre-Ft d<sup>-1</sup> and Lake Okeechobee stage elevation were considered.
+
+--
 
 - __Statistical Modeling:__
   - Multiple regression models using training and testing datasets (70:30). 
@@ -116,6 +126,8 @@ class: left
 - Annual TP and TN loads were estimated by interpolating water quality concentration daily from grab samples collected at each respective structure during days of observed flow (consistent with SFWMD Nutrient Load Program). 
   - Period of Record was restricted to WY 1982 – 2019.
 
+--
+
 - Major hurricane years were excluded from the dataset.
   - Major hurricane years were identified by major storms centerline that passed within 20 km of the C43 Basins and Lake Okeechobee.
 
@@ -140,6 +152,8 @@ class: left
 #### S-79 Water Quality Model (Total Phosphorus)
 - TP load was square-root transformed to fit the assumptions of linear modeling
 
+--
+
 - Model assumptions and verified
   - GVLMA (Global Stats = 4.37, $\rho$=0.36)
 
@@ -147,6 +161,8 @@ class: left
 
 - Residuals check for autocorrelation (Breusch-Godfrey test)
   - Breusch-Godfrey (LM test = 0.27, df = 1, $\rho$=0.60)
+
+--
 
 - Final Model:
 \begin{align*}
@@ -174,8 +190,8 @@ library(magrittr)
 rslt=data.frame(Parameter=c("(Intercept)","QC43Basin","QS77","Mean Lake Stage"),Estimate=c(30.68,2.166e-04,4.161e-05,17.07), stderror=c(181.8,7.334e-05,3.066e-05,15.70),tval=c(0.169,2.953,1.357,1.09),pvalue=c(0.86814,0.00935,0.19,2.89),VIF=c(NA,2.96,1.59,2.89))
 
 flextable(rslt)%>%
-  fontsize(size=12,part="header")%>%
-  fontsize(size=10,part="body")%>%
+  fontsize(size=14,part="header")%>%
+  fontsize(size=12,part="body")%>%
   font(fontname="Arial",part="all")%>%
   align(j=2:ncol(rslt),align="center",part="all")%>%
   hline_top(border = officer::fp_border(width = 1.25))%>%
@@ -191,7 +207,7 @@ flextable(rslt)%>%
   compose(i=3,j=2,as_paragraph("4.16x10",as_sup("-5")))%>%
   compose(i=3,j=3,as_paragraph("3.07x10",as_sup("-5")))%>%
   set_header_labels("stderror"="Standard\nError","tval"="t-value","pvalue"="\u03C1-value")%>%
-  width(width=c(1.5,1,1,1,1,1))%>%
+  width(width=c(1.75,1.2,1.2,1.2,1.2,1.2))%>%
   height(height=0.5)%>%
   footnote(i=1,j=1,part="header",
            value=as_paragraph("Residual standard error (\u03C3): 65.71 on 16 degrees of freedom"),
@@ -221,7 +237,7 @@ knitr::include_graphics('./resources/CRE_WY_TPMod_relaimpo.png')
 Relative importance of each predictor calculated by partitioning R<sup>2</sup> by averaging sequential sums of squares over all orders of regressors (Lindeman et al 1979). All metrics are normalized to a sum of 100%.
 
 ]
-
+--
 .pull-right[
 
 Relative Importance Metrics for the S79 TP Load annual model. 
@@ -229,7 +245,7 @@ Relative Importance Metrics for the S79 TP Load annual model.
 ```{r}
 data.frame(pred=c("QC43","QS77","Stage"),Per.R2=c(46.5,21.0,32.3))%>%
   flextable()%>%
-  fontsize(size=12,part="all")%>%
+  fontsize(size=14,part="all")%>%
   font(fontname="Arial",part="all")%>%
   hline_top(border = officer::fp_border(width = 1.25))%>%
   hline_bottom(border = officer::fp_border(width = 1.25))%>%
@@ -239,7 +255,7 @@ data.frame(pred=c("QC43","QS77","Stage"),Per.R2=c(46.5,21.0,32.3))%>%
   compose(i=1,j=1,as_paragraph("Q",as_sub("C43")))%>%
   compose(i=2,j=1,as_paragraph("Q",as_sub("S77")))%>%
   compose(i=3,j=1,as_paragraph("Mean Lake Stage"))%>%
-  width(width=c(1.5,1))%>%
+  width(width=c(1.75,1.2))%>%
   set_header_labels("pred"="Predictor","Per.R2"="Percent of R\u00B2")
 
 
@@ -258,12 +274,13 @@ class: left
 \end{align*}
 
 .pull-left[
-```{r S79TPPred.width="70%",fig.align="center"}
+```{r S79TPPred,fig.align="center"}
 knitr::include_graphics('./resources/C43TPLoad_WY_ActualPred.png')
 ```
 Actual versus predicted TP loads at S-79 based on predictive model. Actual and predicted concentration were highly correlated (Spearman’s correlation: r=0.83, $\rho$<0.01).
 ]
 
+--
 .pull-right[
 Train:Test
   - R<sup>2</sup>: 0.79
@@ -284,12 +301,13 @@ class: left
 \end{align*}
 
 .pull-left[
-```{r S79TPPredk.width="70%",fig.align="center"}
+```{r S79TPPredk,fig.align="center"}
 knitr::include_graphics('./resources/C43TPLoad_WY_kmodel.png')
 ```
 Actual versus predicted TP loads at S-79 with each k-model presented. 
 ]
 
+--
 .pull-right[
 k-fold (k=10)
 
@@ -317,6 +335,8 @@ class: left
 #### S-79 Water Quality Model (Total Nitrogen)
 - No response variable transformation performed
 
+--
+
 - Model assumptions and verified
   - GVLMA (Global Stats = 4.77, $\rho$=0.31)
 
@@ -324,6 +344,8 @@ class: left
 
 - Residuals check for autocorrelation (Breusch-Godfrey test)
   - Breusch-Godfrey (LM test = 0.73, df = 1, $\rho$=0.39)
+
+--
 
 - Final Model:
 \begin{align*}
@@ -346,8 +368,8 @@ TN Load_{S79} = Q_{C43 Basin} +  Q_{S77} + Mean  Lake  Stage
 rslt=data.frame(Parameter=c("(Intercept)","QC43Basin","QS77","Mean Lake Stage"),Estimate=c(-5.195e4,2.42,1.16,2.346e3), stderror=c(1.139e6,4.595e-1,1.921e-1,9.834e4),tval=c(-0.046,5.270,6.021,0.024),pvalue=c(0.964,7.62e-5,1.78e-5,0.981),VIF=c(NA,2.96,1.59,2.89))
 
 flextable(rslt)%>%
-  fontsize(size=12,part="header")%>%
-  fontsize(size=10,part="body")%>%
+  fontsize(size=14,part="header")%>%
+  fontsize(size=12,part="body")%>%
   font(fontname="Arial",part="all")%>%
   align(j=2:ncol(rslt),align="center",part="all")%>%
   hline_top(border = officer::fp_border(width = 1.25))%>%
@@ -364,7 +386,7 @@ flextable(rslt)%>%
   compose(i=1,j=3,as_paragraph("1.14x10",as_sup("6")))%>%
   compose(i=4,j=3,as_paragraph("9.83x10",as_sup("4")))%>%
   set_header_labels("stderror"="Standard\nError","tval"="t-value","pvalue"="\u03C1-value")%>%
-  width(width=c(1.5,1,1,1,1,1))%>%
+  width(width=c(1.75,1.2,1.2,1.2,1.2,1.2))%>%
   height(height=0.5)%>%
   footnote(i=1,j=1,part="header",
            value=as_paragraph("Residual standard error (\u03C3): 4.11x10",as_sup("5")," on 16 degrees of freedom"),
@@ -395,6 +417,7 @@ Relative importance of each predictor calculated by partitioning R<sup>2</sup> b
 
 ]
 
+--
 .pull-right[
 
 Relative Importance Metrics for the S79 TN Load annual model. 
@@ -402,7 +425,7 @@ Relative Importance Metrics for the S79 TN Load annual model.
 ```{r}
 data.frame(pred=c("QC43","QS77","Stage"),Per.R2=c(39.6,37.9,22.5))%>%
   flextable()%>%
-  fontsize(size=12,part="all")%>%
+  fontsize(size=14,part="all")%>%
   font(fontname="Arial",part="all")%>%
   hline_top(border = officer::fp_border(width = 1.25))%>%
   hline_bottom(border = officer::fp_border(width = 1.25))%>%
@@ -412,7 +435,7 @@ data.frame(pred=c("QC43","QS77","Stage"),Per.R2=c(39.6,37.9,22.5))%>%
   compose(i=1,j=1,as_paragraph("Q",as_sub("C43")))%>%
   compose(i=2,j=1,as_paragraph("Q",as_sub("S77")))%>%
   compose(i=3,j=1,as_paragraph("Mean Lake Stage"))%>%
-  width(width=c(1.5,1))%>%
+  width(width=c(1.75,1.2))%>%
   set_header_labels("pred"="Predictor","Per.R2"="Percent of R\u00B2")
 
 
@@ -431,12 +454,13 @@ TP Load_{S79} = Q_{C43 Basin} +  Q_{S77} + Mean  Lake  Stage
 \end{align*}
 
 .pull-left[
-```{r S79TNPred,out.width="70%",fig.align="center"}
+```{r S79TNPred,fig.align="center"}
 knitr::include_graphics('./resources/C43TNLoad_WY_ActualPred.png')
 ```
 Actual versus predicted TP loads at S-79 based on predictive model. Actual and predicted concentration were highly correlated (Spearman’s correlation: r=0.95, $\rho$<0.01).
 ]
 
+--
 .pull-right[
 Train:Test
   - R<sup>2</sup>: 0.93
@@ -457,12 +481,13 @@ TP Load_{S79} = Q_{C43 Basin} +  Q_{S77} + Mean  Lake  Stage
 \end{align*}
 
 .pull-left[
-```{r S79TNPredk,out.width="70%",fig.align="center"}
+```{r S79TNPredk,fig.align="center"}
 knitr::include_graphics('./resources/C43TNLoad_WY_kmodel.png')
 ```
 Actual versus predicted TP loads at S-79 with each k-model presented. 
 ]
 
+--
 .pull-right[
 k-fold (k=10)
 
@@ -551,5 +576,5 @@ South Florida Water Management District ([DBHYDRO](https://www.sfwmd.gov/science
 ```{r ,out.width="15%",fig.align="center"}
 knitr::include_graphics("https://floridadep.gov/system/files/styles/general_page_images__scaled_to_900_pixels_/private/media-folders/media-root/in-house-graphic-DEP%20Logo%20color%20Large.png?itok=wm1GoIhx")
 ```
-<center><font color="red">Draft FDEP Workproduct</font></center>
+<center><font color="red">Draft FDEP Work Product</font></center>
 
