@@ -48,11 +48,13 @@ class: left, middle
 
 ### Lake Okeechobee System Operating Manual<br>(WQ Subteam)
 
-#### .fancy[Estuary Nutrient Loading Model]
+#### .fancy[DRAFT - Estuary Nutrient Loading Model]
 
 <!--.large[<font color="white">Paul Julian, PhD | `r format(Sys.Date(),"%B %d,%Y")`</font>]-->
 
-.large[Paul Julian, PhD | `r format(as.Date("2020-09-14"),"%B %d, %Y")`]
+FDEP - Office of Water Policy and Ecosystem Restoration
+
+`r format(as.Date("2020-09-14"),"%B %d, %Y")`
 
 <!-- this ends up being the title slide since seal = FALSE-->
 
