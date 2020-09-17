@@ -61,6 +61,15 @@ FDEP - Office of Water Policy and Ecosystem Restoration
 <!-- this ends up being the title slide since seal = FALSE-->
 
 ---
+name: map
+class: middle
+
+```{r overall map link,out.width="100%",fig.align="center"}
+knitr::include_graphics('./resources/LOSOM_map.png')
+```
+
+
+---
 name: intro_goal
 class: left
 
@@ -406,7 +415,7 @@ class: left
 #### S-79 Water Quality Model (Total Nitrogen)
 
 \begin{align*}
-TP Load_{S79} = Q_{C43 Basin} +  Q_{S77} + Mean  Lake  Stage
+TN Load_{S79} = Q_{C43 Basin} +  Q_{S77} + Mean  Lake  Stage
 \end{align*}
 
 .pull-left[
@@ -450,7 +459,7 @@ class: left
 #### S-79 Water Quality Model (Total Nitrogen)
 
 \begin{align*}
-TP Load_{S79} = Q_{C43 Basin} +  Q_{S77} + Mean  Lake  Stage
+TN Load_{S79} = Q_{C43 Basin} +  Q_{S77} + Mean  Lake  Stage
 \end{align*}
 
 .pull-left[
@@ -477,7 +486,7 @@ class: left
 #### S-79 Water Quality Model (Total Nitrogen)
 
 \begin{align*}
-TP Load_{S79} = Q_{C43 Basin} +  Q_{S77} + Mean  Lake  Stage
+TN Load_{S79} = Q_{C43 Basin} +  Q_{S77} + Mean  Lake  Stage
 \end{align*}
 
 .pull-left[
@@ -510,6 +519,10 @@ knitr::include_graphics('./resources/C43_WY_ObsPredloads.png')
 ```
 
 Annual observed versus predicted ( $\pm$ 95% CI) S-79 load during the period of record (WY1982 – WY 2019) with hurricane years identified. 
+
+???
+- Caloosahatchee TMDL is 412 thousand kg/Yr (908,6094 lbs/Y)
+- TMDL includes S79 and tidal basin.
 
 ---
 name: WQMods2
@@ -567,7 +580,7 @@ South Florida Water Management District ([DBHYDRO](https://www.sfwmd.gov/science
 
 #### Slides
 
-* HTML [Slide deck](http://swampthingecology.org/LOSOM_ENLM/Julian_LOSOM_ENLM) &copy; Julian (2020) [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
+* HTML [Slide deck](https://swampthingecology.org/slides/20200918_LOSOM_ENLM/Julian_LOSOM_ENLM.html) &copy; Julian (2020) [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
 
 * RMarkdown [Source](https://github.com/SwampThingPaul/LOSOM_ENLM)
 
