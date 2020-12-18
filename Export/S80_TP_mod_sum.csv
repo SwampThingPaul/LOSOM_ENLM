@@ -1,0 +1,2 @@
+"r.squared","adj.r.squared","sigma","statistic","p.value","df","logLik","AIC","BIC","deviance","df.residual","nobs","response","predictors","trans","note","POR"
+0.983040399259676,0.979648479111611,0.220304176414213,289.818261146428,2.13206723691002e-17,4,5.13448274891531,1.73103450216938,9.04428945137858,0.970678602910897,20,25,"TPLoad","Q.C44, Q.S308, log(Q.S80), mean.stg",NA,"all-data","1982-2019"
