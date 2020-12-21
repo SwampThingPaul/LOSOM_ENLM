@@ -47,3 +47,5 @@ vignettes/*.pdf
 
 /drafts/
 makefile.R
+
+/src/archive/ 
