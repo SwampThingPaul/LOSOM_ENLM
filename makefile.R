@@ -30,10 +30,10 @@ files=c("./libs/","./resources/","./Julian_LOSOM_CRE_ENLM_ad1.html","Julian_LOSO
 
 # local webpage
 webpage.loc="c:/Julian_LaCie/_GitHub/SwampThingPaul.github.io/slides/LOSOMWQ"
-# Folder.Maker(paste0(webpage.loc,"/20200918_LOSOM_ENLM/"))
-file.copy(files,webpage.loc,overwrite=T,recursive=T)
+# Folder.Maker(paste0(webpage.loc,"/ENLM/"))
+file.copy(files,paste0(webpage.loc,"/ENLM"),overwrite=T,recursive=T)
 
 
 webpage.loc="c:/Julian_LaCie/_GitHub/owper-tech.github.io/slides/LOSOM"
-# Folder.Maker(paste0(webpage.loc,"/20200918_LOSOM_ENLM/"))
-file.copy(files,webpage.loc,overwrite=T,recursive=T)
+# Folder.Maker(paste0(webpage.loc,"/ENLM/"))
+file.copy(files,paste0(webpage.loc,"/ENLM"),overwrite=T,recursive=T)

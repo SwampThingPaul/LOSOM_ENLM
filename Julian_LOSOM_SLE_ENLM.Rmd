@@ -462,6 +462,13 @@ Model Fit
 Train:Test
   - Mean Absolute Percent Error: 13 %
   - Min-Max Accuracy: 87 %
+  - Nash-Sutcliffe Coefficient: 0.90
+  - Kling-Gupta Coefficient: 0.86
+
+.footnote[
+.small[[Nash-Sutcliffe/Kling-Gupta explainations](#EffCoef)]
+
+]
 
 ]
 
@@ -470,6 +477,9 @@ Model RSE (backtransformed):  26739.11
 
 Mean absolute percentage error - lower the better
 Min_Max Accuracy - higher the better
+Nash-Sutcliffe - 1 = perfect model (error variance divided by observed variance); https://en.wikipedia.org/wiki/Nash%E2%80%93Sutcliffe_model_efficiency_coefficient
+
+Kling-Gupta - similar to NS range -1 to 1
 
 ---
 name: S80TP_6
@@ -495,10 +505,10 @@ k-fold (k=10)
 _Cross-validation error (average k errors)_
 
 ```{r}
-data.frame(source=c(rep("Model",2),rep("Train:Test",2)),Parameter=c("R2adj","RMSE","MAPE","MMA"),
-           Mean=c(0.97,0.20,19,84),
-           Min=c(0.96,0.17,13,78),
-           Max=c(0.98,0.23,28,88))%>%
+data.frame(source=c(rep("Model",2),rep("Train:Test",4)),Parameter=c("R2adj","RMSE","MAPE","MMA","NS","KG"),
+           Mean=c(0.97,0.20,19,84,0.93,0.86),
+           Min=c(0.96,0.17,13,78,0.89,0.74),
+           Max=c(0.98,0.23,28,88,0.97,0.98))%>%
   flextable()%>%
   font(fontname="Arial",part="all")%>%
   bold(part="header")%>%
@@ -514,7 +524,13 @@ data.frame(source=c(rep("Model",2),rep("Train:Test",2)),Parameter=c("R2adj","RMS
   fix_border_issues()%>%
   footnote(i=3:4,j=2,part="body",
            value=as_paragraph(" Mean Absolute Percent Error (MAPE) and Min-Max Accuracy (MMA) expressed in percent"),
-           ref_symbols = c(" 1"))
+           ref_symbols = c(" 1"))%>%
+    footnote(i=5,j=2,part="body",
+           value=as_paragraph(" NS = Nash-Sutcliffe coefficient"),
+           ref_symbols = c(" 2"))%>%
+    footnote(i=6,j=2,part="body",
+           value=as_paragraph(" KG = Kling-Gupta coefficient"),
+           ref_symbols = c(" 2"))
 
 ```
 
@@ -713,7 +729,8 @@ Model Fit
 Train:Test
   - Mean Absolute Percent Error: 22 %
   - Min-Max Accuracy: 83 %
-
+  - Nash-Sutcliffe Coefficient: 0.93 
+  - Kling-Gupta Coefficient: 0.85
 ]
 
 ???
@@ -747,10 +764,10 @@ k-fold (k=10)
 _Cross-validation error (average k errors)_
 
 ```{r}
-data.frame(source=c(rep("Model",2),rep("Train:Test",2)),Parameter=c("R2adj","RMSE","MAPE","MMA"),
-           Mean=c(0.97,0.19,19,85),
-           Min=c(0.96,0.14,9,80),
-           Max=c(0.99,0.24,26,92))%>%
+data.frame(source=c(rep("Model",2),rep("Train:Test",4)),Parameter=c("R2adj","RMSE","MAPE","MMA","NS","KG"),
+           Mean=c(0.97,0.19,19,85,0.93,0.88),
+           Min=c(0.96,0.14,9,80,0.88,0.74),
+           Max=c(0.99,0.24,26,92,0.99,0.96))%>%
   flextable()%>%
   font(fontname="Arial",part="all")%>%
   bold(part="header")%>%
@@ -766,7 +783,13 @@ data.frame(source=c(rep("Model",2),rep("Train:Test",2)),Parameter=c("R2adj","RMS
   fix_border_issues()%>%
   footnote(i=3:4,j=2,part="body",
            value=as_paragraph(" Mean Absolute Percent Error (MAPE) and Min-Max Accuracy (MMA) expressed in percent"),
-           ref_symbols = c(" 1"))
+           ref_symbols = c(" 1"))%>%
+      footnote(i=5,j=2,part="body",
+           value=as_paragraph(" NS = Nash-Sutcliffe coefficient"),
+           ref_symbols = c(" 2"))%>%
+    footnote(i=6,j=2,part="body",
+           value=as_paragraph(" KG = Kling-Gupta coefficient"),
+           ref_symbols = c(" 2"))
 
 
 ```
@@ -927,7 +950,7 @@ flextable(mod.RMSE)%>%
 #### S-80 Water Quality Models
 
 ```{r ,out.width="80%",fig.align="center"}
-knitr::include_graphics('./resources/C43_WYObsPredloads_annual2.png')
+knitr::include_graphics('./resources/C44_WYObsPredloads_annual2.png')
 ```
 
 Comparison of observed, modelled and period of record estimated nutrient loads at S-80 between Florida Water Year 1982 - 2019 (May 1981 - April 2019).
@@ -978,6 +1001,28 @@ knitr::include_graphics('./resources/RSM_C44_WYPredloads_annual.png')
 <sup>1</sup>Provisional RSM BN outputs with POR extension. For demonstration/testing purposes only.
 ]
 ]
+
+---
+name: RSMeval
+class:left
+
+#### RSM Evalution
+
+- Compare loading conditions of selected alternatives to some base conditions (i.e. ECB, LORS08, etc).
+
+- Both models assume that C43 and C44 Reservoirs are providing temporary storage of existing/available water. 
+
+- Both models do not incorporate potential water quality treatment features
+    - CRE: C43 Water Quality Feasibility Study project.
+    - SLE: C44 Reservoir and STA.
+    
+- To evalute potential WQ improvements loading could be evaluated post processing in a Monte-Carlo like evaluation assuming a degree of treatment (i.e. % reduction, $X$ metric tons, etc.). 
+
+<!--  
+\begin{align*}
+f_{treatment}(WY_{i}) = ENLM TP_{WY=i} \times treatment_{N(\mu ,\sigma^2)}
+\end{align*}
+--> 
 
 ---
 name: last slide
@@ -1099,3 +1144,49 @@ knitr::include_graphics('./resources/S80_TNModResid_ACF.png')
 .small[[TN Model](#S80TN_3) plots]
 ]
 
+---
+name: EffCoef
+
+#### Model Efficiency Coefficient
+
+**Nash-Sutcliffe**
+.pull-left[
+
+\begin{align*}
+NS = 1- \frac{\sum_{t=1}^{n} (X_{s,t} - X_{o,t})^2}{\sum_{t=1}^{n} (X_{o,t} - \mu_{o})^2}
+\end{align*}
+
+]
+.pull-right[
+.small[
+
+$n$ : total number of time-steps <br>
+$X_{s,t}$ : simulated value at timestep $t$ <br>
+$X_{o,t}$ : observed value at timestep $t$ <br>
+$\mu_{o}$ : mean of observed values <br>
+]
+
+The ratio of error variance of the modeled versus observed timeseries
+]
+
+**Kling-Gupta**
+
+\begin{align*}
+KG = 1- \sqrt{(r_{pearson}-1)^{2} + \left(\frac{\sigma_{s}}{\sigma_{o}}-1 \right)^{2} + \left(\frac{\mu_{s}}{\mu_{o}}-1 \right)^2}
+\end{align*}
+
+.pull-left[
+.small[
+$r_{pearson}$ : Pearson correlation coefficient <br>
+$\mu_{s}$ : mean of simulated values <br>
+$\sigma_{o}$ : standard deviation of observed values <br>
+$\sigma_{s}$ : standard deviation of simulated values <br>
+]
+]
+.pull-right[
+Decomposition of NS representing the degree of correlation, bias and variablity of simulated and observed values. 
+]
+
+.footnote[
+.small[[Return](#S80TP_6)]
+]

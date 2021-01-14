@@ -178,7 +178,7 @@ class: left, middle
 
 #### .fancy[DRAFT - Caloosahatchee River Estuary Nutrient Loading Model]
 
-#### <font color="red"> Addendum to [2020-09-18 presentation](https://swampthingecology.org/slides/LOSOMWQ/Julian_LOSOM_ENLM#1), response to comments</font>
+#### <font color="red"> Addendum to [2020-09-18 presentation](https://owper-tech.github.io/slides/LOSOM/ENLM/Julian_LOSOM_ENLM#1), response to comments</font>
 
 
 FDEP - Office of Water Policy and Ecosystem Restoration
@@ -196,7 +196,7 @@ name: questions
 
 #### General Comments
 
-Link to [2020-09-18 presentation](https://swampthingecology.org/slides/LOSOMWQ/Julian_LOSOM_ENLM#1).
+Link to [2020-09-18 presentation](https://owper-tech.github.io/slides/LOSOM/ENLM/Julian_LOSOM_ENLM#1).
 
 General comments on FDEP presentation dated 9/18/2020
 
@@ -804,7 +804,7 @@ knitr::include_graphics('./resources/C43_WYObsPredloads_annualcomp.png')
 mod.RMSE=read.csv(paste0(export.path,"mod_RMSEvals.csv"))
 
 # clean-up
-mod.RMSE$response=with(mod.RMSE,ifelse(response=="TPLoad","TP Load","TN Load"))
+
 #mod.RMSE=merge(mod.RMSE,data.frame(notes=c("all-data","hurricanes excluded","POR"),tab.val=c("Model - All Data","Model - Hur. Ex.","POR Est.")),"notes")
 mod.RMSE=mod.RMSE[,c("response","tab.val","RMSE")]
 mod.RMSE=mod.RMSE[order(mod.RMSE$response,decreasing=T),]

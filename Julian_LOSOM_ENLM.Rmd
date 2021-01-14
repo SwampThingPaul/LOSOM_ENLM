@@ -535,7 +535,7 @@ class: left
 
 #### S-79 Water Quality Models
 
-```{r S79WQmods2,out.width="45%",fig.align="center"}
+```{r S79WQmods2,out.width="75%",fig.align="center"}
 knitr::include_graphics('./resources/C43_WYObsPredloads_annual.png')
 ```
 
