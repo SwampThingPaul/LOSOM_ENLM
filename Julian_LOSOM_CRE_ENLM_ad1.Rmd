@@ -805,8 +805,9 @@ mod.RMSE=read.csv(paste0(export.path,"mod_RMSEvals.csv"))
 
 # clean-up
 
-#mod.RMSE=merge(mod.RMSE,data.frame(notes=c("all-data","hurricanes excluded","POR"),tab.val=c("Model - All Data","Model - Hur. Ex.","POR Est.")),"notes")
-mod.RMSE=mod.RMSE[,c("response","tab.val","RMSE")]
+mod.RMSE=merge(mod.RMSE,data.frame(notes=c("all-data","hurricanes excluded","POR"),tab.val=c("Model - All Data","Model - Hur. Ex.","POR Est.")),"notes")
+mod.RMSE$response=with(mod.RMSE,ifelse(response=="TPLoad","TP Load","TN Load"))
+mod.RMSE=mod.RMSE[,c("response","tab.val","RMSE","NS")]
 mod.RMSE=mod.RMSE[order(mod.RMSE$response,decreasing=T),]
 mod.RMSE$RMSE=round(mod.RMSE$RMSE,0)
 
@@ -814,20 +815,28 @@ cap.val="Root mean standard error for models and period of record estimates."
 flextable(mod.RMSE)%>%
   fontsize(size=13,part="header")%>%
   fontsize(size=11,part="body")%>%
+  colformat_num(j=3,digits=0)%>%
+  colformat_num(j=4,digits=2)%>%
   align(align="left",part="all")%>%
   merge_v(j=1)%>%valign(j=1,valign="top")%>%
   set_header_labels("response"="Model",
                     "tab.val"="Estimate Method")%>%
-  width(width=c(1,1.5,0.5))%>%
+  width(width=c(1,1.5,0.75,0.5))%>%
   fix_border_issues()%>%
-  footnote(i=1,j=1,part="header",
+  footnote(i=1,j=3,part="header",
            value=as_paragraph(" RMSE value for POR Est. calculated using observed values versus annual estimated values using monthly mean concentrations"),
-           ref_symbols = c(" "))%>%
+           ref_symbols = c(" 1"))%>%
+  footnote(i=1,j=4,part="header",
+           value=as_paragraph(" NS = Nash-Sutcliffe coefficient"),
+           ref_symbols = c(" 2"))%>%
   add_header_lines(values=cap.val)%>%fontsize(size=11,part="header")
 
 ```
 
 ]
+
+???
+Nash-Sutcliff - estimates the ratio of error variance of the modeled versus observed timeseries. 
 
 ---
 

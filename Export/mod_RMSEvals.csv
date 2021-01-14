@@ -1,7 +1,7 @@
-"response","tab.val","RMSE"
-"TP Load","Model - All Data",45177
-"TP Load","Model - Hur. Ex.",66908
-"TP Load","POR Est.",73439
-"TN Load","Model - All Data",300277
-"TN Load","Model - Hur. Ex.",367065
-"TN Load","POR Est.",405274
+"response","notes","RMSE","NS"
+"TPLoad","all-data",45176.8748878821,0.802719983949314
+"TPLoad","hurricanes excluded",66908.0495864157,0.74628915198242
+"TPLoad","POR",73438.7400524332,0.643895153313145
+"TNLoad","all-data",300276.862090764,0.950291079653432
+"TNLoad","hurricanes excluded",367064.651560523,0.951546590025766
+"TNLoad","POR",405273.932229851,0.912485756457315
