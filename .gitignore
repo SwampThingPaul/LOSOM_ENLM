@@ -49,3 +49,5 @@ vignettes/*.pdf
 makefile.R
 
 /src/archive/ 
+
+/_Docs/
