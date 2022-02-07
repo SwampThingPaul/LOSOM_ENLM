@@ -638,7 +638,7 @@ notidy_as_flextable(x=NULL,data_g=subset(mod.sum,response=="TNLoad"&note=="all-d
 
 .small[
 \begin{align*}
-TN Load_{S79} = 1.76\times 10^{-2} + (6.60\times 10^{-8} Q_{C44 Basin}) + (1.99\times 10^{-7} Q_{S308}) + (1.06\times 10^{-2} ln(Q_{S80}))\\ - (1.70x10^{-2} Mean  Stage)
+ln(TN Load_{S80}) = 1.76\times 10^{-2} + (6.60\times 10^{-8} Q_{C44 Basin}) + (1.99\times 10^{-7} Q_{S308}) + (1.06\times 10^{-2} ln(Q_{S80}))\\ - (1.70x10^{-2} Mean  Stage)
 \end{align*}
 ]
 
