@@ -797,7 +797,7 @@ knitr::include_graphics('./plots/C43_CriticalLoad.png')
 
 * .small[The effects of season, color (CDOM), biology, and hydrodynamics affect the chlorophyll-load relationship across the estuary.]
 
-* .small[Using Lower Estuary Chl-a WQS critical could be ~4262 tons TN & ~434 tons TP. ]
+* .small[Using Lower Estuary Chl-a WQS critical load could be estimated to be ~4262 tons TN & ~434 tons TP. ]
 
 ???
 CRE TN TMDL = 4121 mt
